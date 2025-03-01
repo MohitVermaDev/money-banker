@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, pool
 from alembic import context
 from core.config import settings
 from core.database import Base
-from models import user, bank, income, expense  # Import all models
+from models import user, bank, transaction  # Import all models
 target_metadata = Base.metadata
 
 config = context.config

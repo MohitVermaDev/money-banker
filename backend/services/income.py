@@ -1,13 +1,13 @@
-from models.income import Income
+from models.transaction import Transaction
 from core.database import SessionLocal
-from schemas.income import IncomeCreate
+from schemas.transaction import TransactionCreate
 from sqlalchemy.orm import Session
 
 class IncomeService:
     @staticmethod
-    def create_income(user_id: int, income_data: IncomeCreate):
+    def create_income(user_id: int, income_data: TransactionCreate):
         db: Session = SessionLocal()
-        income = Income(**income_data.dict(), user_id=user_id)
+        income = Transaction(**income_data.model_dump(), user_id=user_id)
         db.add(income)
         db.commit()
         db.refresh(income)
@@ -16,13 +16,13 @@ class IncomeService:
     @staticmethod
     def get_user_incomes(user_id: int):
         db: Session = SessionLocal()
-        incomes = db.query(Income).filter(Income.user_id == user_id).all()
+        incomes = db.query(Transaction).filter(Transaction.user_id == user_id, Transaction.type=='income').all()
         return incomes
 
     @staticmethod
     def delete_income(user_id: int, income_id: int):
         db: Session = SessionLocal()
-        income = db.query(Income).filter(Income.id == income_id, Income.user_id == user_id).first()
+        income = db.query(Transaction).filter(Transaction.id == income_id, Transaction.user_id == user_id, Transaction.type=='income').first()
         if income:
             db.delete(income)
             db.commit()

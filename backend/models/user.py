@@ -11,9 +11,8 @@ class User(Base):
     password = Column(String(255), nullable=False)
     role = Column(String(255), default="member")
 
-    # banks = relationship("Bank", back_populates="owner")
-    # incomes = relationship("Income", back_populates="owner")
-    # expenses = relationship("Expense", back_populates="owner")
+    banks = relationship("Bank", back_populates="user")
+    transactions = relationship("Transaction", back_populates="user")
 
     def set_password(self, password: str):
         self.password_hash = bcrypt.hash(password)

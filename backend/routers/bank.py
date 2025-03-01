@@ -1,9 +1,7 @@
 from fastapi import APIRouter, Depends
 from schemas.bank import BankCreate, BankDelete
 from services.bank import BankService
-from sqlalchemy.orm import Session
 from routers.response import standard_response
-from core.database import get_db
 from core.jwt_token import get_current_user
 
 router = APIRouter(prefix="/bank", tags=["Bank"])
