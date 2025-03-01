@@ -6,8 +6,9 @@ from sqlalchemy.orm import Session
 class BankService:
     @staticmethod
     def create_bank(user_id: int, bank_data: BankCreate):
+        print(bank_data.model_dump())
         db: Session = SessionLocal()
-        bank = Bank(**bank_data.dict(), user_id=user_id)
+        bank = Bank(**bank_data.model_dump(), user_id=user_id)
         db.add(bank)
         db.commit()
         db.refresh(bank)

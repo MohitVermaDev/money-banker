@@ -10,6 +10,6 @@ class Bank(Base):
     account_number = Column(String(255), unique=True, nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
-    owner = relationship("User", back_populates="banks")
-    incomes = relationship("Income", back_populates="bank")
-    expenses = relationship("Expense", back_populates="bank")
+    # owner = relationship("User", back_populates="banks")
+    # incomes = relationship("Income", back_populates="bank")
+    # expenses = relationship("Expense", back_populates="bank")

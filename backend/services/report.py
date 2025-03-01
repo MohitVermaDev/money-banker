@@ -3,6 +3,7 @@ from models.expense import Expense
 from models.income import Income
 from sqlalchemy.orm import Session
 from datetime import datetime, date
+from sqlalchemy import func
 from typing import List, Dict
 
 class ReportService:

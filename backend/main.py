@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from core.database import Base, engine
-from routers import auth, income, expense, otp, report
+from routers import auth, income, expense, otp, report, bank
 
 app = FastAPI(title="Money Banker")
 
@@ -9,6 +9,7 @@ Base.metadata.create_all(bind=engine)
 
 # Include routers
 app.include_router(auth.router)
+app.include_router(bank.router)
 app.include_router(income.router)
 app.include_router(expense.router)
 app.include_router(otp.router)

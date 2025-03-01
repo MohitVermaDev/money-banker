@@ -13,5 +13,5 @@ class Income(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    owner = relationship("User", back_populates="incomes")
-    bank = relationship("Bank", back_populates="incomes")
+    # owner = relationship("User", back_populates="incomes")
+    # bank = relationship("Bank", back_populates="incomes")

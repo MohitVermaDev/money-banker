@@ -14,5 +14,5 @@ class Expense(Base):
     is_cash = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    owner = relationship("User", back_populates="expenses")
-    bank = relationship("Bank", back_populates="expenses")
+    # owner = relationship("User", back_populates="expenses")
+    # bank = relationship("Bank", back_populates="expenses")
