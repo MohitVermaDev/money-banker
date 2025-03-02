@@ -11,3 +11,4 @@ email-validator
 pydantic-settings
 PyJWT
 bcrypt==4.0.1
+fastapi-cors

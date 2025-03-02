@@ -7,10 +7,10 @@ from core.config import settings
 
 class AuthService:
     @staticmethod
-    def register_user(email, password):
+    def register_user(email, password, name):
         db = SessionLocal()
         hashed_password = bcrypt.hash(password)
-        user = User(email=email, password=hashed_password)
+        user = User(email=email, password=hashed_password, name=name)
         db.add(user)
         db.commit()
         db.refresh(user)
