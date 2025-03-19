@@ -1,37 +1,12 @@
-/* a.nav-item {
-  max-width: 25% !important;
-  width: 100%;
-  padding: 15px;
-  display: grid;
-  text-align: center;
-  font-size: 25px;
-  border-right: 1px solid #ddd;
-  color: #2b3595
-}
-
-.bottom-navbar {
-  position: fixed;
-  bottom: 0;
-  border-top: 1px solid #ddd;
-  width: 100%;
-  background: white;
-  box-shadow: 0px -3px 20px #ddd;
-  display: flex;
-}
-
-a.nav-item span{
-  display: none;
-} */
-
 .bottom-navbar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #2b3595;
+  background: #0d6efd;
+  z-index: 9;
   display: flex;
   justify-content: space-around;
-  padding: 10px 0;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -41,12 +16,151 @@ a.nav-item span{
   text-align: center;
   flex-grow: 1;
   display: flex;
+  background: #0d6efd;
   flex-direction: column;
   align-items: center;
   font-size: 14px;
+  border-radius: 50% 50% 0px 0px;
+  padding: 18px 0px 10px 0px;
 }
 
 .bottom-navbar .nav-item i {
   font-size: 20px;
   margin-bottom: 4px;
+}
+
+.bottom-navbar .nav-item span {
+  display: none;
+}
+
+.bottom-navbar .nav-item.active {
+  background-color: #2b3595;
+}
+
+.bottom-navbar .nav-item:hover {
+  background-color: #0148b3;
+}
+
+.container.mt-4 {
+  max-height: 85vh;
+  overflow: scroll;
+}
+
+.tranaction_table tr.income td {
+  background-color: rgb(175, 255, 175);
+}
+
+.tranaction_table tr.expense td {
+  background-color: rgb(255, 178, 175);
+}
+
+.dashboard-widget .icon-shift{
+    font-size: 79px;
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    z-index: 0;
+}
+
+.red .dashboard-widget .icon-shift{
+  color: #ff000028;
+}
+
+.yellow .dashboard-widget .icon-shift{
+  color: #737700e9;
+}
+
+.black .dashboard-widget .icon-shift{
+  color: #00000028;
+}
+
+.blue .dashboard-widget .icon-shift{
+  color: #0400ff28;
+}
+
+.green .dashboard-widget .icon-shift{
+  color: #00ff0028;
+}
+
+.red .dashboard-widget .info-box{
+  background: #ff000036;
+}
+
+.green .dashboard-widget .info-box{
+  background: #00ff1536;
+}
+
+.blue .dashboard-widget .info-box{
+  background: #0066ff36;
+}
+
+.black .dashboard-widget .info-box{
+  background: #00000036;
+}
+
+.yellow .dashboard-widget .info-box{
+  background: #fbff004e;
+}
+
+.dashboard-widget .info-box {
+  overflow: hidden;
+  border-radius: 5px;
+  height: 150px;
+  text-align: center;
+  padding: 0;
+}
+
+.dashboard-widget .info-box .info-box-text, .info-box .progress-description {
+  display: block;
+  font-size: 25px;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dashboard-widget .info-box-content{
+  padding: 0;
+}
+
+.dashboard-widget{
+  padding: 0px 10px;
+}
+
+.menu-boxes .info-box-icon {
+  position: absolute;
+  height: 100%;
+  right: 0px;
+  width: 100%;
+  text-align: right;
+  justify-content: right;
+  background: transparent;
+}
+
+.menu-boxes .bg-danger {
+  background-color: #ff00006e !important;
+}
+
+.menu-boxes .info-box-icon i{
+  margin-right: 10px;
+}
+
+.menu-boxes .info-box-text{
+  z-index: 9;
+  font-size: 23px;
+  font-weight: bold;
+}
+
+.menu-boxes .info-box-number{
+  font-size: 10px;
+  z-index: 9;
+}
+
+.menu-boxes a{
+  color: black !important;
+  text-decoration: none;
+}
+
+.menu-boxes .info-box{
+  height: 90px;
 }

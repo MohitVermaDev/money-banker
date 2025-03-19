@@ -1,20 +1,19 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import banker_call from '../core/axios';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL, getAuthHeaders } from '../core/config';
 
 const Bank = () => {
   const [banks, setBanks] = useState([]);
-  const { token } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   // Fetch Banks List (Memoized)
   const fetchBanks = useCallback(async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/bank/list`, {
-        headers: getAuthHeaders(),
-      });
+      const response = await banker_call(`bank/list`,navigate);
       if (response.data.status) {
         setBanks(response.data.data);
       }
@@ -22,7 +21,7 @@ const Bank = () => {
       toast.error('Error fetching banks');
       console.error('Error fetching banks:', error);
     }
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     fetchBanks();
@@ -35,6 +34,10 @@ const Bank = () => {
       html: `
         <input id="swal-bank-name" class="swal2-input" placeholder="Bank Name">
         <input id="swal-account-number" class="swal2-input" placeholder="Account Number">
+        <div style="text-align: left; margin: 10px;">
+          <input type="checkbox" id="swal-is-credit-allow">
+          <label for="swal-is-credit-allow"> Allow Credit Transactions?</label>
+        </div>
       `,
       showCancelButton: true,
       confirmButtonText: 'Create',
@@ -42,6 +45,7 @@ const Bank = () => {
         return {
           name: document.getElementById('swal-bank-name').value,
           account_number: document.getElementById('swal-account-number').value,
+          is_credit_allow: document.getElementById('swal-is-credit-allow').checked,
         };
       },
     });
@@ -96,28 +100,28 @@ const Bank = () => {
 
   return (
     <>
-        
-        <section class="content-header">
-            <div class="container-fluid">
-                <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-primary card-outline">
-                    <div class="card-header">
-                        <h3 class="card-title" style={{"font-weight":"bold","font-size":"28px"}}>
-                        
+        <section className="content-header">
+            <div className="container-fluid">
+                <div className="row">
+                <div className="col-md-12">
+                    <div className="card card-primary card-outline">
+                    <div className="card-header">
+                        <h3 className="card-title" style={{ fontWeight: "bold", fontSize: "28px" }}>
                             Bank Account List
                         </h3>
                         <button className="btn btn-primary float-right" onClick={createBank}>
-                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <i className="fa fa-plus" aria-hidden="true"></i>
                         </button>
                     </div>
-                    <div class="card-body">
+                    <div className="card-body" style={{overflow:'auto'}}>
                         <table className="table table-bordered">
                         <thead>
                             <tr>
-                            <th>Bank Name</th>
-                            <th>Account Number</th>
-                            <th>Actions</th>
+                            <th>Name</th>
+                            <th>Acc No</th>
+                            <th>Balance</th>
+                            <th>In</th>
+                            <th>##</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -126,9 +130,11 @@ const Bank = () => {
                                 <tr key={bank.id}>
                                 <td>{bank.name}</td>
                                 <td>{bank.account_number}</td>
+                                <td>Rs.{bank.net_balance}</td>
+                                <td>{bank.is_credit_allow ? "Yes" : "No"}</td>
                                 <td>
                                     <button className="btn btn-danger btn-sm" onClick={() => deleteBank(bank.id)}>
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                    <i className="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                 </td>
                                 </tr>
@@ -141,13 +147,11 @@ const Bank = () => {
                         </tbody>
                         </table>
                     </div>
-                   
                     </div>
                 </div>
                 </div>
             </div>
         </section>
-      
     </>
   );
 };

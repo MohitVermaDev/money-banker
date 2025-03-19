@@ -15,9 +15,9 @@ def create_bank(bank: BankCreate, user_id: int = Depends(get_current_user)):
         return standard_response(False, 300, str(e))
 
 @router.get("/list")
-def list(user_id: int = Depends(get_current_user)):
+def list(user_id: int = Depends(get_current_user), is_credit_allowed = None):
     try:
-        banks = BankService.get_user_banks(user_id)
+        banks = BankService.get_user_banks(user_id, is_credit_allowed)
         return standard_response(True, 200, "Bank List", data=banks)
     except Exception as e:
         return standard_response(False, 300, str(e))

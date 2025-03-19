@@ -2,9 +2,16 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from core.config import settings
+from routers.response import standard_response
 # from schemas.user import TokenData
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
+class EXHTTP(HTTPException):
+    data = {}
+    # def __str__(self):
+    #     return standard_response(False,self.status_code,self.detail)
+
 
 def get_current_user(token: str = Depends(oauth2_scheme)) -> int:
     """Extracts user ID from the JWT token."""

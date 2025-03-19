@@ -8,11 +8,6 @@ const UpperNavbar = () => {
   const dispatch = useDispatch();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // Function to toggle sidebar
-  const toggleSidebar = () => {
-    document.body.classList.toggle('sidebar-collapse');
-  };
-
   const handleLogout = () => {
     Swal.fire({
       title: 'Are you sure?',

@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from core.database import Base, engine
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-from routers import auth, income, expense, otp, report, bank
+from routers import auth, income, expense, otp, report, bank, transaction
 
 app = FastAPI(title="Money Banker")
 
@@ -30,6 +30,7 @@ app.include_router(income.router)
 app.include_router(expense.router)
 app.include_router(otp.router)
 app.include_router(report.router)
+app.include_router(transaction.router)
 
 @app.get("/")
 def read_root():

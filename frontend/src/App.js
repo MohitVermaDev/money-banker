@@ -5,6 +5,7 @@ import { logout } from './redux/authSlice';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
 import { ToastContainer } from 'react-toastify';
+import Report from './pages/Report';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,11 +33,9 @@ function App() {
         <Routes>
           <Route element={<ProtectedRoutes isAuthenticated={isAuthenticated} />}>
             <Route path="/" element={<Dashboard />} />
-            {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-            {/* <Route path="/income" element={<Income />} /> */}
             <Route path="/bank" element={<Bank />} />
             <Route path="/transaction" element={<Transaction />} />
-            {/* <Route path="/expense" element={<Expense />} /> */}
+            <Route path="/reports" element={<Report />} />
           </Route>
           <Route path="/login" element={isAuthenticated ? <Navigate to="/" /> : <Login />} />
           <Route path="/register" element={isAuthenticated ? <Navigate to="/" /> : <Register />} />
